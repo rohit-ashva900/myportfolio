@@ -13,11 +13,11 @@
         <div class="container mx-auto px-4 py-6">
             <nav class="bg-gray-800 p-4">
                 <ul class="flex space-x-4">
-                    {% comment %} <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
-                    <li><a href="{% url 'about' %}" class="text-white">About</a></li>
-                    <li><a href="{% url 'skills' %}" class="text-white">Skills</a></li>
-                    <li><a href="{% url 'projects' %}" class="text-white">Projects</a></li>
-                    <li><a href="{% url 'contact' %}" class="text-white">Contact</a></li> {% endcomment %}
+                    <li><a href=" #home " class="text-white">Home</a></li>
+                    <li><a href=" #about " class="text-white">About</a></li>
+                    <li><a href=" #skills " class="text-white">Skills</a></li>
+                    <li><a href=" #projects " class="text-white">Projects</a></li>
+                    <li><a href=" #Contact " class="text-white">Contact</a></li> 
                 </ul>
             </nav>
         </div>
@@ -58,46 +58,48 @@
             </section>
         </main>
     </div>
-    <section id="about" class="container mx-auto px-4 py-16">
-        <div class="flex flex-col items-center text-center gap-8">
-                <div class="max-w-4xl">
-                    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                        I'm Rohitashva, a software developer passionate about solving challenges. My journey began during my Bachelor of Computer Application days at Maharshi Dayanand Saraswati University. Since then, I've embraced various technologies, constantly adapting to new trends.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                        With an Advanced Certificate in Full Stack Development from IIT Roorkee and an Advanced Diploma in Management, I've honed my skills in Python, Django, Flask, SQL, ReactJs, and more.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                        Beyond proficiency in technologies, I understand that the tech landscape evolves rapidly. I approach my work with versatility and continuous learning.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                        My focus is on building robust and scalable solutions, thriving in dynamic environments. I'm committed to contributing to the success of initiatives, embracing challenges.
-                    </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        Let's connect and collaborate to drive innovation in software development, embracing diversity and change!
-                    </p>
-                </div>
-    
-                <div id="skills" class="mt-16 w-full">
-                    <div class="text-center mb-8">
-                        <p class="text-2xl font-semibold">Technical Skills</p>
-                        <h4 class="text-xl mt-2">Here are a few technologies I’ve been working with recently:</h4>
+    <section id="contact" class="py-12 bg-gradient-to-r from-purple-500 to-blue-500">
+        <h1 class="text-center text-4xl font-bold text-white mb-12">Contact Me</h1>
+        <div class="flex justify-center">
+            <div class="w-full max-w-2xl bg-white rounded-lg shadow-xl p-8">
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" name="name" id="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-300" placeholder="Enter Your Name">
                     </div>
-    
-                    <section class="flex flex-wrap justify-center gap-8">
-                        {% for skill in skills %}
-                            <div key="{{ skill.id }}" class="flex flex-col items-center p-8 rounded-lg shadow-lg transform transition-transform hover:scale-105">
-                                <div class="text-2xl mb-2">
-                                    {{ skill.image }}
-                                </div>
-                                <p class="text-sm text-gray-600">{{ skill.level }}</p>
-                            </div>
-                        {% endfor %}
-                    </section>
-                </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-300" placeholder="Enter Your Email" required>
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                        <input type="number" name="number" id="phone" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-300" placeholder="Enter Your Phone" required>
+                    </div>
+                    
+                    <div>
+                        <label for="textarea" class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea name="content" id="textarea" rows="5" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-300" placeholder="Enter Your Message"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-indigo-500 text-white font-bold rounded-lg shadow-md hover:bg-indigo-700">Send</button>
+                </form>
+            </div>
         </div>
     </section>
+    
+    <div class="container mx-auto mt-6">
+        {% if messages %}
+            <ul class="list-none p-4">
+                {% for message in messages %}
+                    <li class="mb-2 p-2 text-center rounded {{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+   
 
 
 </body>
